@@ -14,8 +14,11 @@ import StudentProfile from "./page/studentProfile/StudentProfile";
 import AppointmentForm from "./page/appointmentForm/AppointmentForm";
 import Order from "./page/order/Order";
 import Emergency from "./page/emergency/Emergency";
+import { UserContext } from "./hooks/UserContext";
+import ProtectedRoute from "./ProtectedRoute";
 
 function AppRoutes() {
+  const { logged, setLogged } = useContext(UserContext);
 
   return (
     <BrowserRouter>
@@ -35,28 +38,44 @@ function AppRoutes() {
         <Route
           exact
           path="/meds/:id"
-          element={<MedDetail />}
+          element={
+            <ProtectedRoute>
+              <MedDetail />
+            </ProtectedRoute>
+          }
         />
       </Routes>
       <Routes>
         <Route
           exact
           path="/emergency"
-          element={<Emergency />}
+          element={
+            <ProtectedRoute>
+              <Emergency />
+            </ProtectedRoute>
+          }
         />
       </Routes>
       <Routes>
         <Route
           exact
           path="/cart"
-          element={<Cart />}
+          element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          }
         />
       </Routes>
       <Routes>
         <Route
           exact
           path="/order"
-          element={<Order />}
+          element={
+            <ProtectedRoute>
+              <Order />
+            </ProtectedRoute>
+          }
         />
       </Routes>
       <Routes>
@@ -66,42 +85,66 @@ function AppRoutes() {
         <Route
           exact
           path="/doctor/:id"
-          element={<AppointmentForm />}
+          element={
+            <ProtectedRoute>
+              <AppointmentForm />
+            </ProtectedRoute>
+          }
         ></Route>
       </Routes>
       <Routes>
         <Route
           exact
           path="/appointment"
-          element={<Appointment />}
+          element={
+            <ProtectedRoute>
+              <Appointment />
+            </ProtectedRoute>
+          }
         />
       </Routes>
       <Routes>
         <Route
           exact
           path="/appointment/:id"
-          element={<Appointment />}
+          element={
+            <ProtectedRoute>
+              <Appointment />
+            </ProtectedRoute>
+          }
         />
       </Routes>
       <Routes>
         <Route
           exact
           path="/history"
-          element={<History />}
+          element={
+            <ProtectedRoute>
+              <History />
+            </ProtectedRoute>
+          }
         />
       </Routes>
       <Routes>
         <Route
           exact
           path="/doctorProfile"
-          element={<DoctorProfile />}
+          element={
+            <ProtectedRoute>
+              <DoctorProfile />
+            </ProtectedRoute>
+          }
         />
       </Routes>
       <Routes>
         <Route
           exact
           path="/studentProfile"
-          element={<StudentProfile />}
+          element={
+            <ProtectedRoute>
+              <StudentProfile />
+            </ProtectedRoute>
+          }
         />
       </Routes>
     </BrowserRouter>
